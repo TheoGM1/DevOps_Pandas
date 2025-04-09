@@ -40,7 +40,7 @@ public class AppTest {
 
         DataFrame df = new DataFrame(labels,data);
         
-        assertEquals(df.colonnes.size(), 2, "erreur nombre de colones");
+        assertEquals(df.getSeries().size(), 2, "erreur nombre de colones");
     }
 
     @Test
@@ -51,7 +51,7 @@ public class AppTest {
         values.add(3);
         Series<Integer> col = new Series<>("Test", values);
 
-        assertEquals(col.labels, "Test", "erreur label");
+        assertEquals(col.getLabel(), "Test", "erreur label");
     }
 
     @Test
@@ -62,7 +62,7 @@ public class AppTest {
         values.add(3);
         Series<Integer> col = new Series<>("Test", values);
 
-        assertEquals(col.values, values, "erreur valeurs");
+        assertEquals(col.getValues(), values, "erreur valeurs");
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AppTest {
         ArrayList<Integer> values = new ArrayList<>();
         Series<Integer> col = new Series<>("Test", values);
 
-        assertEquals(col.values.size(), 0, "erreur colonne vide");
+        assertEquals(col.getValues().size(), 0, "erreur colonne vide");
     }
 
     @Test
@@ -79,7 +79,7 @@ public class AppTest {
         ArrayList<String> labels = new ArrayList<>();
         DataFrame df = new DataFrame(labels, data);
         
-        assertEquals(df.colonnes.size(), 0, "erreur nombre de colones");
+        assertEquals(df.getSeries().size(), 0, "erreur nombre de colones");
     }
     
     
