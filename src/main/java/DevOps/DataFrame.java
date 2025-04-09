@@ -3,17 +3,20 @@ package DevOps;
 import java.util.ArrayList;
 
 public class DataFrame {
-    ArrayList<Series<?>> colonnes;
+    ArrayList<Series<?>> series;
 
     public DataFrame(ArrayList<String> label, ArrayList<ArrayList<?>> entree) {
-        ArrayList<Series<?>> colonnes = new ArrayList<>();
+        this.series = new ArrayList<>();
         int i = 0;
         for (ArrayList<?> col : entree) {
-            Series<?> colonne = new Series<>(label.get(i), col);
-            colonnes.add(colonne);
+            Series<?> serie = new Series<>(label.get(i), col);
+            series.add(serie);
             i++;
         }
-        this.colonnes = colonnes;
+    }
+
+    public ArrayList<Series<?>> getSeries() {
+        return series;
     }
 
 }
