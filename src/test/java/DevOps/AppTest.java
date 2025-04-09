@@ -44,31 +44,31 @@ public class AppTest {
     }
 
     @Test
-    public void testNameColonneCreation() {
+    public void testNameSeriesCreation() {
         ArrayList<Integer> values = new ArrayList<>();
         values.add(1);
         values.add(2);
         values.add(3);
-        Colonne<Integer> col = new Colonne<>("Test", values);
+        Series<Integer> col = new Series<>("Test", values);
 
         assertEquals(col.labels, "Test", "erreur label");
     }
 
     @Test
-    public void testValColonneCreation(){
+    public void testValSeriesCreation(){
         ArrayList<Integer> values = new ArrayList<>();
         values.add(1);
         values.add(2);
         values.add(3);
-        Colonne<Integer> col = new Colonne<>("Test", values);
+        Series<Integer> col = new Series<>("Test", values);
 
         assertEquals(col.values, values, "erreur valeurs");
     }
 
     @Test
-    public void testColonneVide(){
+    public void testSeriesVide(){
         ArrayList<Integer> values = new ArrayList<>();
-        Colonne<Integer> col = new Colonne<>("Test", values);
+        Series<Integer> col = new Series<>("Test", values);
 
         assertEquals(col.values.size(), 0, "erreur colonne vide");
     }
