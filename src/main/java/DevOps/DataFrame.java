@@ -474,4 +474,15 @@ public class DataFrame {
         }
     }
 
+    public double meanColumn(int numColumn){
+        return;
+    }
+
+    public double minColumn(int numColumn){
+        return;
+    }
+
+    public double maxColumn(int numColumn){
+        return;
+    }
 }
