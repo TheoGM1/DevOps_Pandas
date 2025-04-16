@@ -586,7 +586,7 @@ public class DataFrame {
             ArrayList<Number> s = (ArrayList<Number>)series.get(indice).getValues();
             double sum = 0.0 ;
             for(int i=0 ; i<s.size() ; i++){
-                sum += (double)s.get(i);
+                sum += s.get(i).doubleValue();
             }
             return (sum/s.size()) ;
         } else {
@@ -603,10 +603,10 @@ public class DataFrame {
         }
         if(series.get(indice).getValue(0) instanceof Number){
             ArrayList<Number> s = (ArrayList<Number>)series.get(indice).getValues();
-            double min = (double)s.get(0) ;
+            double min = s.get(0).doubleValue() ;
             for(int i=1 ; i<s.size() ; i++){
-                if((double)s.get(i) < min){
-                    min = (double)s.get(i);
+                if(s.get(i).doubleValue() < min){
+                    min = s.get(i).doubleValue();
                 }
             }
             return min ;
@@ -624,10 +624,10 @@ public class DataFrame {
         }
         if(series.get(indice).getValue(0) instanceof Number){
             ArrayList<Number> s = (ArrayList<Number>)series.get(indice).getValues();
-            double max = (double)s.get(0) ;
+            double max = s.get(0).doubleValue() ;
             for(int i=1 ; i<s.size() ; i++){
-                if((double)s.get(i) > max){
-                    max = (double)s.get(i);
+                if(s.get(i).doubleValue() > max){
+                    max = s.get(i).doubleValue();
                 }
             }
             return max ;

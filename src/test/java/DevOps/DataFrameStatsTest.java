@@ -28,7 +28,7 @@ public class DataFrameStatsTest {
     @Test
     public void testMeanColumn() {
         assertEquals(25.0, df.meanColumn("Age"),"Wrong average age calculation");
-        assertEquals((170.5 + 180.2 + 165.0) / 3.0, df.meanColumn("Wrong average height calculation"));
+        assertEquals((170.5 + 180.2 + 165.0) / 3.0, df.meanColumn("Height"),"Wrong average height calculation");
     }
 
     @Test
