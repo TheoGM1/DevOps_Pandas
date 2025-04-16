@@ -47,10 +47,10 @@ public class SelectTest {
 
 
         
-        assertEquals(result.getSeries().get(0).getValues(), expected.getSeries().get(0).getValues(), "erreur ligne DataFrame values different assert 1");
-        assertEquals(result.getSeries().get(1).getValues(), expected.getSeries().get(1).getValues(), "erreur ligne DataFrame values different assert 2");
-        assertEquals(result.getSeries().get(0).getLabel(), expected.getSeries().get(0).getLabel(), "erreur ligne DataFrame Label different assert 3");
-        assertEquals(result.getSeries().get(1).getLabel(), expected.getSeries().get(1).getLabel(), "erreur ligne DataFrame Label different assert 4");
+        assertEquals(expected.getSeries().get(0).getValues(), result.getSeries().get(0).getValues(), "erreur ligne DataFrame values different assert 1");
+        assertEquals(expected.getSeries().get(1).getValues(), result.getSeries().get(1).getValues(), "erreur ligne DataFrame values different assert 2");
+        assertEquals(expected.getSeries().get(0).getLabel(), result.getSeries().get(0).getLabel(), "erreur ligne DataFrame Label different assert 3");
+        assertEquals(expected.getSeries().get(1).getLabel(), result.getSeries().get(1).getLabel(), "erreur ligne DataFrame Label different assert 4");
     }
 
 
@@ -96,10 +96,10 @@ public class SelectTest {
 
         DataFrame result = df.selectRow(indices);
         
-        assertEquals(result.getSeries().get(0).getValues(), expected.getSeries().get(0).getValues(), "erreur ligne DataFrame values different assert 1");
-        assertEquals(result.getSeries().get(1).getValues(), expected.getSeries().get(1).getValues(), "erreur ligne DataFrame values different assert 2");
-        assertEquals(result.getSeries().get(0).getLabel(), expected.getSeries().get(0).getLabel(), "erreur ligne DataFrame Label different assert 3");
-        assertEquals(result.getSeries().get(1).getLabel(), expected.getSeries().get(1).getLabel(), "erreur ligne DataFrame Label different assert 4");
+        assertEquals(expected.getSeries().get(0).getValues(), result.getSeries().get(0).getValues(), "erreur ligne DataFrame values different assert 1");
+        assertEquals(expected.getSeries().get(1).getValues(), result.getSeries().get(1).getValues(), "erreur ligne DataFrame values different assert 2");
+        assertEquals(expected.getSeries().get(0).getLabel(), result.getSeries().get(0).getLabel(), "erreur ligne DataFrame Label different assert 3");
+        assertEquals(expected.getSeries().get(1).getLabel(), result.getSeries().get(1).getLabel(), "erreur ligne DataFrame Label different assert 4");
     }
 
 
@@ -138,10 +138,10 @@ public class SelectTest {
         labels2.add("Colonne2");
         DataFrame expected = new DataFrame(labels2,data2);
         
-        assertEquals(result.getSeries().get(0).getValues(), expected.getSeries().get(0).getValues(), "erreur ligneIntervalle DataFrame values different assert 1");
-        assertEquals(result.getSeries().get(1).getValues(), expected.getSeries().get(1).getValues(), "erreur ligneIntervalle DataFrame values different assert 2");
-        assertEquals(result.getSeries().get(0).getLabel(), expected.getSeries().get(0).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 3");
-        assertEquals(result.getSeries().get(1).getLabel(), expected.getSeries().get(1).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 4");
+        assertEquals(expected.getSeries().get(0).getValues(),result.getSeries().get(0).getValues(), "erreur ligneIntervalle DataFrame values different assert 1");
+        assertEquals(expected.getSeries().get(1).getValues(), result.getSeries().get(1).getValues(), "erreur ligneIntervalle DataFrame values different assert 2");
+        assertEquals(expected.getSeries().get(0).getLabel(), result.getSeries().get(0).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 3");
+        assertEquals(expected.getSeries().get(1).getLabel(), result.getSeries().get(1).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 4");
     }
 
     @Test
@@ -177,8 +177,8 @@ public class SelectTest {
         DataFrame expected = new DataFrame(labels2,data2);
 
         
-        assertEquals(result.getSeries().get(0).getValues(), expected.getSeries().get(0).getValues(), "erreur ligneIntervalle DataFrame values different assert 1");
-        assertEquals(result.getSeries().get(0).getLabel(), expected.getSeries().get(0).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 2");
+        assertEquals(expected.getSeries().get(0).getValues(), result.getSeries().get(0).getValues(), "erreur ligneIntervalle DataFrame values different assert 1");
+        assertEquals(expected.getSeries().get(0).getLabel(), result.getSeries().get(0).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 2");
 
     }
 
@@ -225,10 +225,10 @@ public class SelectTest {
         labels2.add("Colonne2");
         DataFrame expected = new DataFrame(labels2,data2);
 
-        assertEquals(result.getSeries().get(0).getValues(), expected.getSeries().get(0).getValues(), "erreur ligneIntervalle DataFrame values different assert 1");
-        assertEquals(result.getSeries().get(1).getValues(), expected.getSeries().get(1).getValues(), "erreur ligneIntervalle DataFrame values different assert 2");
-        assertEquals(result.getSeries().get(0).getLabel(), expected.getSeries().get(0).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 3");
-        assertEquals(result.getSeries().get(1).getLabel(), expected.getSeries().get(1).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 4");
+        assertEquals(expected.getSeries().get(0).getValues(), result.getSeries().get(0).getValues(), "erreur ligneIntervalle DataFrame values different assert 1");
+        assertEquals(expected.getSeries().get(1).getValues(), result.getSeries().get(1).getValues(), "erreur ligneIntervalle DataFrame values different assert 2");
+        assertEquals(expected.getSeries().get(0).getLabel(), result.getSeries().get(0).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 3");
+        assertEquals(expected.getSeries().get(1).getLabel(), result.getSeries().get(1).getLabel(), "erreur ligneIntervalle DataFrame Label different assert 4");
 
     }
 }
