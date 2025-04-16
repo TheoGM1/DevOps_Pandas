@@ -1,5 +1,7 @@
 # DevOps_Pandas
 
+[![CI & Deploy SNAPSHOT](https://github.com/TheoGM1/DevOps_Pandas/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/TheoGM1/DevOps_Pandas/actions/workflows/deploy.yml)
+[![Java CI with Maven](https://github.com/TheoGM1/DevOps_Pandas/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/TheoGM1/DevOps_Pandas/actions/workflows/maven.yml)
 
 ## Fonctionnalités implémentées
 
@@ -8,8 +10,6 @@ Notre librairie Pandas pour java implémente les fonctions de bases suivantes :
 - Création d'un DataFrame à partir d'un tableau -> Cette fonction prend en entrée une liste de labels et un tableau de données. Le tableau contient des listes, dont les données d'une même liste sont du même type.
 
 - Création d'un DataFrame à partir d'un fichier CSV -> Cette fonction prend en entrée un fichier en format CSV et est le parcours pour initialiser les données et les labels.
-
--
 
 
 ## Outils utilisés
