@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -257,10 +256,100 @@ public class DataFrame {
 
 
 
-    public <T> DataFrame selectRow(int i){ //Selection de ligne selon un indice
-        if(series.isEmpty()){
-            throw new IndexOutOfBoundsException("DataFrame Vide");
+
+
+
+    public String printLabelsLine(){
+        StringBuilder lineToPrint = new StringBuilder() ;
+        int i ;
+        for(i=0 ; i<series.size()-1 ; i++){
+            lineToPrint.append(series.get(i).getLabel());
+            lineToPrint.append(",");
         }
+        lineToPrint.append(series.get(i).getLabel());
+        return lineToPrint.toString() ;
+    }
+
+    public String objectToString(Object valueToPrint){
+        if(valueToPrint instanceof Date){
+            Date d = (Date) valueToPrint ;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            return sdf.format(d);
+        } else {
+            return valueToPrint.toString();
+        }
+    }
+
+
+    //fonction d'affichage
+
+
+
+    public String printValuesLine(int numLine){
+        StringBuilder lineToPrint = new StringBuilder() ;
+        int i ;
+        for(i=0 ; i<series.size()-1 ; i++){
+            lineToPrint.append(objectToString(series.get(i).getValue(numLine)));
+            lineToPrint.append(",");
+        }
+        lineToPrint.append(objectToString(series.get(i).getValue(numLine)));
+        return lineToPrint.toString() ;
+    }
+    
+
+    public String printFirstLines(int nbrLinesToPrint){
+
+        int nbrLines = nbrLinesToPrint ;
+
+        if(nbrLinesToPrint > series.size()){
+            nbrLines = series.size();
+        }
+
+        StringBuilder linesToPrint = new StringBuilder() ;
+        linesToPrint.append(printLabelsLine());
+
+
+        for(int i=0 ; i<nbrLines ; i++){
+            linesToPrint.append("\n");
+            linesToPrint.append(printValuesLine(i));
+        }
+        return linesToPrint.toString();
+    }
+
+    public String printLastLines(int nbrLinesToPrint){
+
+        int nbrLines = nbrLinesToPrint ;
+        int firstIndice = series.size() - nbrLines;
+
+        if(nbrLinesToPrint > series.size()){
+            firstIndice = 0;
+        }
+
+        StringBuilder linesToPrint = new StringBuilder() ;
+        linesToPrint.append(printLabelsLine());
+
+
+        for(int i=firstIndice ; i<series.size() ; i++){
+            linesToPrint.append("\n");
+            linesToPrint.append(printValuesLine(i));
+        }
+
+        return linesToPrint.toString();
+    }
+
+    public String printAll(){
+        StringBuilder linesToPrint = new StringBuilder() ;
+        linesToPrint.append(printLabelsLine());
+        for(int i=0 ; i<this.getRowCount() ; i++){
+            linesToPrint.append("\n");
+            linesToPrint.append(printValuesLine(i));
+        }
+        return linesToPrint.toString() ;
+    }
+
+ 
+
+    public <T> DataFrame selectRow(int i){
         if(i < 0 || i >= series.size()){
             throw new IndexOutOfBoundsException("DataFrame Vide ou la valeur de i est invalide");
         }
