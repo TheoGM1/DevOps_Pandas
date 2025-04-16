@@ -58,3 +58,11 @@ Pour finir, on déploie une image Docker contenant notre librairie et un petit p
 
 ## Feedback
 
+Lors de l'utilisation de notre système, nous avons éprouvé quelques difficultés lors de certaines manipulations, dues à la présence de notre branche develop protégée.
+En effet, lors d'une configuration du workflow gitFlow depuis une mauvaise branche, l'annulation de nos modifications fut plus complexes que prévue.
+Nous avons aussi eu un peu de mal à faire redescendre nos changements dans la branche main, puisque après configuration du workflow directement dans cette branche, la branche develop devait être actualisée, alors que nous cherchions à actualiser au contraire la branche main, et la protection sur les deux branches n'a pas aidé.
+Plus tard, le problème de configuration avec les fichiers yaml précédemment cité fut aussi lié à notre fonctionnement mis en place.
+Néanmoins cette méthodologie restait simple, claire, et pratique pour la majorité du projet, et nous a donc apporté plus d'avantages que d'inconvénients.
+Au final, c'est méthode mise en place pour notre projet nous a beaucoup changé de nos méthodes habituelle, et dans le bon sens, elle nous a empêché de nous éparpiller et nous a aussi forcé à adopter de bonnes pratiques pour travailler en groupe en répartissant le travail et en se tenant au courant.
+Nous retiendrons donc cela pour de futurs projets.
+
