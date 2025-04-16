@@ -38,4 +38,12 @@ public class Series<T> {
     public void setValues(ArrayList<T> values) {
         this.values = values;
     }
+
+    public void setLabel(String newLabel){
+        this.label = newLabel;
+    }
+
+    public void add(T value) {
+        values.add(value);
+    }
 }
