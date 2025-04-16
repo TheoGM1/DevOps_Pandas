@@ -438,11 +438,12 @@ public class DataFrame {
         }
         ArrayList<ArrayList<?>> data = new ArrayList<>();
         ArrayList<String> label = new ArrayList<>();
-        for(int i = 0; i < series.size(); i++){
-            for(int j = 0; j < labels.size(); j++){
-                if(series.get(i).label.equals(labels.get(j))){
-                    data.add(series.get(i).getValues());
-                    label.add(series.get(i).getLabel());
+        
+        for(int i = 0 ;i < labels.size(); i++){
+            for(int j = 0; j <series.size();j++){
+                if(series.get(j).label.equals(labels.get(i))){
+                    data.add(series.get(j).getValues());
+                    label.add(series.get(j).getLabel());
                 }
             }
         }
