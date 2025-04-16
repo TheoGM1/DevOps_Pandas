@@ -87,13 +87,6 @@ public class DataFrame {
         }
         return new DataFrame(label,data);
     }
-    
-    public void setColRow(ArrayList<Integer> index,ArrayList<String> labels,Object valeur){
-        if(index.size() == 0 || labels.size() == 0){
-            throw new IllegalArgumentException("List vide");
-        }
-        for(int i = 0;)
-    }
 
     public void setRow(int index,Object valeur){
         if(index < 0 || index > series.size()){
@@ -110,19 +103,5 @@ public class DataFrame {
         }
     }
 
-    public void setCol(String label,Object valeur){
-        boolean exist = false;
-        for(int i = 0;i<series.size();i++){
-            if(valeur.getClass() != series.get(i).getValues(0).getclass()){
-                throw new IllegalArgumentException("Erreur du type d'argument");
-            }
-            if(series.get(i).getLabel()){
-                exist = true;
-            }
-        }
-        if(exist == false){
-            throw new IllegalArgumentException("Le label est pas dans le DataFrame");
-        }
-    }
 
 }
