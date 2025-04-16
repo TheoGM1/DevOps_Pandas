@@ -3,10 +3,15 @@ package DevOps;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 public class SelectTest {
     
@@ -293,5 +298,29 @@ public class SelectTest {
 
         assertEquals(expected.getSeries().get(0).getValues(), result1.getSeries().get(0).getValues(), "erreur ligneIntervalle DataFrame values different assert 1");
         assertEquals(expected2.getSeries().get(0).getValues(), result2.getSeries().get(0).getValues(), "erreur ligneIntervalle DataFrame values different assert 2");
+    }
+
+    @Test
+    public void testSelectColReturnsCorrectColumns() {
+        ArrayList<String> labels = new ArrayList<>(Arrays.asList("ProductID", "Price", "ProductName", "InStock"));
+        ArrayList<ArrayList<?>> data = new ArrayList<>();
+
+        data.add(new ArrayList<>(List.of(101)));                 // ProductID
+        data.add(new ArrayList<>(List.of(19.99)));               // Price
+        data.add(new ArrayList<>(List.of("Wireless Mouse")));    // ProductName
+        data.add(new ArrayList<>(List.of(true)));                // InStock
+
+        DataFrame df = new DataFrame(labels, data);
+
+        ArrayList<String> selectedColumns = new ArrayList<>(Arrays.asList("ProductName", "Price"));
+        DataFrame nameAndPrice = df.selectCol(selectedColumns);
+
+        List<String> expectedLabels = Arrays.asList("ProductName", "Price");
+        assertEquals(expectedLabels, nameAndPrice.getLabels());
+
+        assertEquals(1, nameAndPrice.getRowCount());
+
+        assertEquals("Wireless Mouse", nameAndPrice.getSeries("ProductName").getValue(0));
+        assertEquals(19.99, (Double) nameAndPrice.getSeries("Price").getValue(0), 0.001);
     }
 }
