@@ -1,7 +1,5 @@
 package DevOps;
 
-import java.time.format.DateTimeFormatter;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.ParseException;
@@ -282,6 +280,11 @@ public class DataFrame {
         }
     }
 
+
+    //fonction d'affichage
+
+
+
     public String printValuesLine(int numLine){
         StringBuilder lineToPrint = new StringBuilder() ;
         int i ;
@@ -292,15 +295,21 @@ public class DataFrame {
         lineToPrint.append(objectToString(series.get(i).getValue(numLine)));
         return lineToPrint.toString() ;
     }
+    
 
     public String printFirstLines(int nbrLinesToPrint){
+
         int nbrLines = nbrLinesToPrint ;
+
         if(nbrLinesToPrint > series.size()){
             nbrLines = series.size();
         }
+
         StringBuilder linesToPrint = new StringBuilder() ;
-        linesToPrint.append(printValuesLine(0));
-        for(int i=1 ; i<nbrLines ; i++){
+        linesToPrint.append(printLabelsLine());
+
+
+        for(int i=0 ; i<nbrLines ; i++){
             linesToPrint.append("\n");
             linesToPrint.append(printValuesLine(i));
         }
@@ -308,17 +317,23 @@ public class DataFrame {
     }
 
     public String printLastLines(int nbrLinesToPrint){
+
         int nbrLines = nbrLinesToPrint ;
+        int firstIndice = series.size() - nbrLines;
+
         if(nbrLinesToPrint > series.size()){
-            nbrLines = series.size();
+            firstIndice = 0;
         }
-        int firstIndice = series.size() - nbrLines ;
+
         StringBuilder linesToPrint = new StringBuilder() ;
-        linesToPrint.append(printValuesLine(firstIndice));
-        for(int i=firstIndice+1 ; i<nbrLines ; i++){
+        linesToPrint.append(printLabelsLine());
+
+
+        for(int i=firstIndice ; i<series.size() ; i++){
             linesToPrint.append("\n");
             linesToPrint.append(printValuesLine(i));
         }
+
         return linesToPrint.toString();
     }
 
