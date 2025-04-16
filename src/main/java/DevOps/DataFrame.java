@@ -257,9 +257,12 @@ public class DataFrame {
 
 
 
-    public <T> DataFrame selectRow(int i){
+    public <T> DataFrame selectRow(int i){ //Selection de ligne selon un indice
+        if(series.isEmpty()){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
+        }
         if(i < 0 || i >= series.size()){
-            throw new IndexOutOfBoundsException("Index out of bounds");
+            throw new IndexOutOfBoundsException("DataFrame Vide ou la valeur de i est invalide");
         }
         ArrayList<ArrayList<?>> data = new ArrayList<>();
         ArrayList<String> label = new ArrayList<>();
@@ -272,9 +275,9 @@ public class DataFrame {
         return new DataFrame(label,data);
     }
 
-    public DataFrame selectRow(ArrayList<Integer> i){
-        if(i.size() == 0){
-            throw new IllegalArgumentException("List vide");
+    public DataFrame selectRow(ArrayList<Integer> i){ //Selection de ligne selon une liste d'indice
+        if(series.isEmpty()){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
         }
         ArrayList<ArrayList<?>> data = new ArrayList<>();
         ArrayList<String> label = new ArrayList<>();
@@ -289,9 +292,12 @@ public class DataFrame {
         return new DataFrame(label,data);
     }
 
-    public DataFrame selectRow(int i, int j){
+    public DataFrame selectRow(int i, int j){//Selection de ligne selon une intervalle d'indice
+        if(series.isEmpty()){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
+        }
         if(i < 0 || j < 0 || i >= series.size() || j >= series.size()){
-            throw new IndexOutOfBoundsException("Index out of bounds");
+            throw new IndexOutOfBoundsException("DataFrame Vide ou la valeur de i est invalide ou la valeur de j");
         }
         if(i > j){
             throw new IllegalArgumentException("i doit etre plus petit que j");
@@ -309,7 +315,10 @@ public class DataFrame {
         return new DataFrame(label,data);
     }
 
-    public DataFrame selectCol(String label){
+    public DataFrame selectCol(String label){//Selection de colonne selon un label
+        if(series.isEmpty()){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
+        }
         ArrayList<ArrayList<?>> data = new ArrayList<>();
         ArrayList<String> label_array = new ArrayList<>();
         for(int i = 0; i < series.size(); i++){
@@ -318,16 +327,16 @@ public class DataFrame {
                 label_array.add(series.get(i).getLabel());
             }
         }
-        if(data.size() == 0){
+        if(series.isEmpty()){
             throw new IllegalArgumentException("Colonne non trouvée");
         }
         return new DataFrame(label_array,data);
 
     }
 
-    public DataFrame selectCol (ArrayList<String> labels){
-        if(labels.size() == 0){
-            throw new IllegalArgumentException("List vide");
+    public DataFrame selectCol (ArrayList<String> labels){//Selection de colonne selon une liste de  label
+        if(series.isEmpty()){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
         }
         ArrayList<ArrayList<?>> data = new ArrayList<>();
         ArrayList<String> label = new ArrayList<>();
@@ -345,5 +354,35 @@ public class DataFrame {
         return new DataFrame(label,data);
     }
 
+    public <T> void changeValue(String label,int index,T value){ //changer une value selon un indice et un label
+        if(series.isEmpty()){
+            throw new IndexOutOfBoundsException("DataFrame vide");
+        }
+        for(int i = 0;i<series.size();i++){
+            if(label.equals(series.get(i).getLabel())){
+                    if(value.getClass().equals(series.get(i).getValue(index).getClass())){
+                    Series<?> tmpSeries = series.get(i);
+                    @SuppressWarnings("unchecked")
+                    Series<T> s = (Series <T>) tmpSeries;
+                    s.setValue(index,value);
+                }else{
+                    throw new ClassCastException("Type de la valeur incompatible avec la colonne");
+                }
+            }
+        }
+
+    }
+
+    public void changeLabel(String labelToChange,String newLabel){ // changer le nom d'un label
+        if(series.isEmpty()){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
+        }
+        
+        for(int i = 0;i<series.size();i++){
+            if(labelToChange.equals(series.get(i).getLabel())){
+                series.get(i).setLabel(newLabel);
+            }
+        }
+    }
 
 }
