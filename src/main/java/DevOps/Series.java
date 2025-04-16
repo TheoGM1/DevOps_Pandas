@@ -42,4 +42,8 @@ public class Series<T> {
     public void setLabel(String newLabel){
         this.label = newLabel;
     }
+
+    public void add(T value) {
+        values.add(value);
+    }
 }

@@ -2,6 +2,7 @@ package DevOps;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -518,6 +519,9 @@ public class DataFrame {
                     }
                     data.add(tmp);
                 }
+                else{
+                    throw new IllegalArgumentException("Le type comparer n'appartient pas la classe Number");
+                }
             }
         }
         if(data.isEmpty()){
@@ -546,9 +550,6 @@ public class DataFrame {
 
     }
 
-    public static boolean isComparableNumber(Object obj) {
-        return obj instanceof Number && obj instanceof Comparable;
-    }
 
     public void changeLabel(String labelToChange,String newLabel){ // changer le nom d'un label
         if(series.isEmpty()){
@@ -561,5 +562,54 @@ public class DataFrame {
             }
         }
     }
+
+    public <T> void addCol(String label,ArrayList<T> elemsAdd){
+        if(elemsAdd.isEmpty()){
+            throw new IndexOutOfBoundsException("list d'elements a ajouter Vide");
+        }
+        if(label.isBlank()){
+            throw new IndexOutOfBoundsException("Label Vide");
+        }
+
+        Series<T> list = new Series<T>(label, elemsAdd);
+        series.add(list);
+    }
+
+    public <T> void addRow(Object... element){
+        if(series.isEmpty()){
+            throw new IndexOutOfBoundsException("list d'elements a ajouter Vide");
+        }
+        
+        int i = 0;
+        for(Object elem : element){
+            if(isCompare(elem, series.get(i).getValue(0))){
+                i++;
+            }
+        }
+        if(i==series.size()){
+            i = 0;
+            for(Object elem : element){
+                if(isCompare(elem, series.get(i).getValue(0))){
+                    Series<?> tmpSeries = series.get(i);
+                    @SuppressWarnings("unchecked")
+                    Series<T> s = (Series <T>) tmpSeries;
+                    s.add((T)elem);
+                    i++;
+                }
+            }
+        }
+        else{
+            throw new IllegalArgumentException("Les type ne sont pas les memes");
+        }
+    }
+
+    private static boolean isComparableNumber(Object obj) {
+        return obj instanceof Number && obj instanceof Comparable;
+    }
+
+    private static boolean isCompare(Object obj,Object elem){
+        return obj.getClass().equals(elem.getClass());
+    }
+
 
 }
