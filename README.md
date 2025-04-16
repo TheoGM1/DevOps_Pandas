@@ -11,6 +11,12 @@ Notre librairie Pandas pour java implémente les fonctions de bases suivantes :
 
 - Création d'un DataFrame à partir d'un fichier CSV -> Cette fonction prend en entrée un fichier en format CSV et est le parcours pour initialiser les données et les labels.
 
+- Affichage d'un DataFrame -> Cette fonction permet d'afficher le contenu d'un DataFrame sous la forme d'un string. La fonction parcours ligne par ligne en recuperant les valeur de chaque colonne.
+
+- Affichage de x premières lignes d'un DataFrame -> Cette fonction permet d'afficher les x premières lignes d'un DataFrame. La fonction parcours ligne par ligne en recuperant les valeur de chaque colonne pour celle demandée. Si x est supérieur au nombre de lignes, elle affiche toutes les lignes.
+  
+- Affichage de x dernières lignes d'un DataFrame -> Cette fonction permet d'afficher les x dernières lignes d'un DataFrame. La fonction parcours ligne par ligne en recuperant les valeur de chaque colonne pour celle demandée, le parcours s'effectue en commencant par la premiere ligne que l'on doit afficher. Si x est supérieur au nombre de lignes, elle affiche toutes les lignes.
+
 
 ## Outils utilisés
 
