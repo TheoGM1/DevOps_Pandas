@@ -27,6 +27,10 @@ Notre librairie Pandas pour java implémente les fonctions de bases suivantes :
 
 - Change le label d’une colonne.
 
+- Ajouter une ligne dans le DataFrame.
+
+- Ajouter une colonne avec un label et une liste d'éléments.
+
 
 ## Outils utilisés
 
