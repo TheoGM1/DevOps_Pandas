@@ -254,8 +254,6 @@ public class DataFrame {
         }
         return null;
     }
-}
-    ArrayList<Series<?>> series;
 
 
 
@@ -280,8 +278,12 @@ public class DataFrame {
         }
         ArrayList<ArrayList<?>> data = new ArrayList<>();
         ArrayList<String> label = new ArrayList<>();
-        for(int j = 0; j < i.size(); j++){
-            data.add(series.get(j).getValues(i.get(j)));
+        for(int j = 0; j < series.size(); j++){
+            ArrayList<Object> temp = new ArrayList<>();
+            for(int k=0;k< i.size();k++){
+                temp.add(series.get(j).getValue(i.get(k)));
+            }
+            data.add(temp);
             label.add(series.get(j).getLabel());
         }
         return new DataFrame(label,data);
@@ -296,8 +298,12 @@ public class DataFrame {
         }
         ArrayList<ArrayList<?>> data = new ArrayList<>();
         ArrayList<String> label = new ArrayList<>();
-        for(int k = i; k <= j; k++){
-            data.add(series.get(k).getValues(k));
+        for(int k = 0; k < series.size(); k++){
+            ArrayList<Object> temp = new ArrayList<>();
+            for(int size = i;size <= j;size++){
+                temp.add(series.get(k).getValue(size));
+            }
+            data.add(temp);
             label.add(series.get(k).getLabel());
         }
         return new DataFrame(label,data);
@@ -307,15 +313,15 @@ public class DataFrame {
         ArrayList<ArrayList<?>> data = new ArrayList<>();
         ArrayList<String> label_array = new ArrayList<>();
         for(int i = 0; i < series.size(); i++){
-            if(series.get(i).labels.equals(label)){
-                data.add(series.get(i).getValues(i));
-                label.add(series.get(i).getLabel());
+            if(series.get(i).getLabel().equals(label)){
+                data.add(series.get(i).getValues());
+                label_array.add(series.get(i).getLabel());
             }
         }
         if(data.size() == 0){
             throw new IllegalArgumentException("Colonne non trouvée");
         }
-        return new DataFrame(label,data);
+        return new DataFrame(label_array,data);
 
     }
 
@@ -327,9 +333,9 @@ public class DataFrame {
         ArrayList<String> label = new ArrayList<>();
         for(int i = 0; i < series.size(); i++){
             for(int j = 0; j < labels.size(); j++){
-                if(series.get(i).labels.equals(labels.get(j))){
-                    data.add(series.get(i).getValues(i));
-                    label.add(series.get(i).getLabels());
+                if(series.get(i).label.equals(labels.get(j))){
+                    data.add(series.get(i).getValues());
+                    label.add(series.get(i).getLabel());
                 }
             }
         }
@@ -338,22 +344,6 @@ public class DataFrame {
         }
         return new DataFrame(label,data);
     }
-
-    public void setRow(int index,Object valeur){
-        if(index < 0 || index > series.size()){
-            throw new IndexOutOfBoundsException("Index out of bounds");
-        }
-        
-        for(int i = 0;i<series.size();i++){
-            if(valeur.getClass() != series.get(i).getValues(0).getclass()){
-                throw new IllegalArgumentException("Erreur du type d'argument");
-            }
-        }
-        for(int i = 0;i<series.size();i++){
-            series.get(i).setValue(i,valeur);
-        }
-    }
-
 
 
 }
