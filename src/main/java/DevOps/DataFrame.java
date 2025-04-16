@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DataFrame {
-    ArrayList<Series<?>> colonnes;
+    ArrayList<Series<?>> series;
 
 
 
