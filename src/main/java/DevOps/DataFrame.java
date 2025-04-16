@@ -361,6 +361,9 @@ public class DataFrame {
             data.add(temp);
             label.add(series.get(j).getLabel());
         }
+        if(data.isEmpty()){
+            throw new IllegalArgumentException("Ligne non trouvée");
+        }
         return new DataFrame(label,data);
     }
 
@@ -377,6 +380,9 @@ public class DataFrame {
             }
             data.add(temp);
             label.add(series.get(j).getLabel());
+        }
+        if(data.isEmpty()){
+            throw new IllegalArgumentException("Ligne non trouvée");
         }
         return new DataFrame(label,data);
     }
@@ -400,6 +406,9 @@ public class DataFrame {
             }
             data.add(temp);
             label.add(series.get(k).getLabel());
+        }
+        if(data.isEmpty()){
+            throw new IllegalArgumentException("Ligne non trouvée");
         }
         return new DataFrame(label,data);
     }
@@ -437,10 +446,84 @@ public class DataFrame {
                 }
             }
         }
-        if(data.size() == 0){
+        if(data.isEmpty()){
             throw new IllegalArgumentException("Colonne non trouvée");
         }
         return new DataFrame(label,data);
+    }
+
+    public <T> DataFrame SelectColCond(String label,String comp,double x){
+        if(series.isEmpty()){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
+        }
+        int d;
+        ArrayList<ArrayList<?>> data = new ArrayList<>();
+        ArrayList<String> labels = new ArrayList<>();
+        ArrayList<T> tmp;
+        for(int i = 0;i<series.size();i++){
+            if(series.get(i).getLabel().equals(label)){
+                if(isComparableNumber(series.get(i).getValue(0))){
+                    tmp = new ArrayList<T>();
+                    labels.add(series.get(i).getLabel());
+                    Series<?> tmpSeries = series.get(i);
+                    @SuppressWarnings("unchecked")
+                    Series<T> s = (Series <T>) tmpSeries;
+                    switch (comp) {
+                        case "=":
+                            for(int j = 0;j<series.get(i).getValues().size();j++){
+                                if(((Number)s.getValue(j)).doubleValue()==x){
+                                    tmp.add(s.getValue(j));
+                                }
+                            }
+                            break;
+                        case "<":
+                            for(int j = 0;j<series.get(i).getValues().size();j++){
+                                if(((Number)s.getValue(j)).doubleValue() < x){
+                                    tmp.add(s.getValue(j));
+                                }
+                            }
+                            break;
+                        case ">":
+                            for(int j = 0;j<series.get(i).getValues().size();j++){
+                                if(((Number)s.getValue(j)).doubleValue()>x){
+                                    tmp.add(s.getValue(j));
+                                }
+                            }
+                            break;
+
+                        case "<=":
+                            for(int j = 0;j<series.get(i).getValues().size();j++){
+                                if(((Number)s.getValue(j)).doubleValue()<=x){
+                                    tmp.add(s.getValue(j));
+                                }
+                            }
+                            break;
+                        case ">=":
+                            for(int j = 0;j<series.get(i).getValues().size();j++){
+                                if(((Number)s.getValue(j)).doubleValue()>=x){
+                                    tmp.add(s.getValue(j));
+                                }
+                            }
+                            break;
+                        case "!=":
+                            for(int j = 0;j<series.get(i).getValues().size();j++){
+                                if(((Number)s.getValue(j)).doubleValue()!=x){
+                                    tmp.add(s.getValue(j));
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    data.add(tmp);
+                }
+            }
+        }
+        if(data.isEmpty()){
+            throw new IllegalArgumentException("label non trouvé");
+        }
+        
+        return new DataFrame(labels,data);
     }
 
     public <T> void changeValue(String label,int index,T value){ //changer une value selon un indice et un label
@@ -460,6 +543,10 @@ public class DataFrame {
             }
         }
 
+    }
+
+    public static boolean isComparableNumber(Object obj) {
+        return obj instanceof Number && obj instanceof Comparable;
     }
 
     public void changeLabel(String labelToChange,String newLabel){ // changer le nom d'un label
