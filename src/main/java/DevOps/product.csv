@@ -1,0 +1,16 @@
+ProductID,Price,ProductName,InStock
+101,19.99,"Wireless Mouse",true
+102,49.50,"Mechanical Keyboard",true
+103,149.99,"27-inch Monitor",false
+104,89.95,"External Hard Drive",true
+105,299.99,"Graphics Card",false
+106,129.99,"Bluetooth Speaker",true
+107,9.99,"USB-C Cable",true
+108,59.99,"Ergonomic Chair",true
+109,79.49,"Wireless Headphones",false
+110,15.50,"Laptop Stand",true
+111,399.00,"Gaming Laptop",true
+112,24.99,"Webcam",true
+113,34.95,"LED Desk Lamp",true
+114,5.99,"Mouse Pad",true
+115,299.99,"Smartphone",false
