@@ -17,6 +17,16 @@ Notre librairie Pandas pour java implémente les fonctions de bases suivantes :
   
 - Affichage de x dernières lignes d'un DataFrame -> Cette fonction permet d'afficher les x dernières lignes d'un DataFrame. La fonction parcours ligne par ligne en recuperant les valeur de chaque colonne pour celle demandée, le parcours s'effectue en commencant par la premiere ligne que l'on doit afficher. Si x est supérieur au nombre de lignes, elle affiche toutes les lignes.
 
+- Sélectionne des lignes selon un indice, une liste d'indices ou un intervalle, et crée un nouveau DataFrame -> La fonction parcourt les colonnes une à une, récupère les valeurs aux indices demandés, ainsi que les labels des colonnes.
+
+- Sélectionne des colonnes selon un label ou une liste de labels, et crée un nouveau DataFrame -> La fonction parcourt les labels et récupère les colonnes correspondantes.
+
+- Sélectionne des colonnes selon une condition, et crée un nouveau DataFrame avec les données qui respectent cette condition -> La fonction prend en entrée un label, un comparateur sous forme de chaîne ("=", "<", ">", "<=", ">=") et une valeur numérique (double) pour effectuer la comparaison.
+
+- Modifie la valeur d’une Series grâce à son indice et son label -> Modifie la valeur dans la bonne série après avoir vérifié que le type est bien compatible.
+
+- Change le label d’une colonne.
+
 
 ## Outils utilisés
 
