@@ -562,4 +562,77 @@ public class DataFrame {
         }
     }
 
+    private int getLabelIndice(String label){
+        if(series.isEmpty()){
+            return -1 ;
+        }
+        int indice = -2 ;
+        for(int i=0 ; i<series.size() ; i++){
+            if(series.get(i).getLabel().equals(label)){
+                indice = i ;
+            }
+        }
+        return indice ;
+    }
+
+    public double meanColumn(String labelName){
+        int indice = this.getLabelIndice(labelName);
+        if(indice == -1){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
+        } else if(indice == -2){
+            throw new IndexOutOfBoundsException("La colonne de label \""+labelName+"\" n'existe pas dans le DataFrame");
+        }
+        if(series.get(indice).getValue(0) instanceof Number){
+            ArrayList<Number> s = (ArrayList<Number>)series.get(indice).getValues();
+            double sum = 0.0 ;
+            for(int i=0 ; i<s.size() ; i++){
+                sum += s.get(i).doubleValue();
+            }
+            return (sum/s.size()) ;
+        } else {
+            throw new IndexOutOfBoundsException("La moyenne n'est pas calculable sur la colonne \""+labelName+"\"");
+        }
+    }
+
+    public double minColumn(String labelName){
+        int indice = this.getLabelIndice(labelName);
+        if(indice == -1){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
+        } else if(indice == -2){
+            throw new IndexOutOfBoundsException("La colonne de label \""+labelName+"\" n'existe pas dans le DataFrame");
+        }
+        if(series.get(indice).getValue(0) instanceof Number){
+            ArrayList<Number> s = (ArrayList<Number>)series.get(indice).getValues();
+            double min = s.get(0).doubleValue() ;
+            for(int i=1 ; i<s.size() ; i++){
+                if(s.get(i).doubleValue() < min){
+                    min = s.get(i).doubleValue();
+                }
+            }
+            return min ;
+        } else {
+            throw new IndexOutOfBoundsException("Le minimum n'est pas calculable sur la colonne \""+labelName+"\"");
+        }
+    }
+
+    public double maxColumn(String labelName){
+        int indice = this.getLabelIndice(labelName);
+        if(indice == -1){
+            throw new IndexOutOfBoundsException("DataFrame Vide");
+        } else if(indice == -2){
+            throw new IndexOutOfBoundsException("La colonne de label \""+labelName+"\" n'existe pas dans le DataFrame");
+        }
+        if(series.get(indice).getValue(0) instanceof Number){
+            ArrayList<Number> s = (ArrayList<Number>)series.get(indice).getValues();
+            double max = s.get(0).doubleValue() ;
+            for(int i=1 ; i<s.size() ; i++){
+                if(s.get(i).doubleValue() > max){
+                    max = s.get(i).doubleValue();
+                }
+            }
+            return max ;
+        } else {
+            throw new IndexOutOfBoundsException("La maximum n'est pas calculable sur la colonne \""+labelName+"\"");
+        }
+    }
 }
