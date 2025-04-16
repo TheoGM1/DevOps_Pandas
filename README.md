@@ -31,6 +31,9 @@ Notre librairie Pandas pour java implémente les fonctions de bases suivantes :
 
 - Ajouter une colonne avec un label et une liste d'éléments.
 
+- Calculer la moyenne d'une colonne
+- Calculer la valeur maximale ou minimale d'une colonne
+
 
 ## Outils utilisés
 
@@ -46,6 +49,11 @@ Jacoco -> Cet outil nous a permis de tester la couverture de code. Lors d'un mer
 Nous avons choisi le Workflow gitFlow pour notre projet. Nous avons créé une branche main qui représente les versions déployées de notre librairie. Pour push dans cette branche, une pull request doit être envoyée et validée par un autre développeur. Une fois validé et vérifié, le programme est déployé dans un fichier JAR.
 Pour le développement principal, nous avons la branche develop, cette branche est aussi protégée par une obligation de faire des pulls request.
 À partir de la branche develop, nous créons de nouvelles branches pour chaque nouvelle fonctionnalité que nous voulons ajouter. Une fois une fonctionnalité développée, nous faisons une pull request pour merge dans la branche develop.
+
+Lors d'un merge sur la branche main qui corespond au déploiement d'une nouvelle version, les séries de tests sont exécutées afin de vérifier que les tests passent toujours. Cela permet de vérifier la couverture de code de nos tests et de vérifier si le seuil de 80% de couverture est atteint. Si ce seuil n'est pas atteint, le build va fail.
+Ensuite, si la couverture de code a atteint le seuil minimum, on peut déployer notre bibliothèque sur le dépôt Maven avec GitHub Packages.
+Pour finir, on déploie une image Docker contenant notre librairie et un petit programme démontrant le fonctionnement.
+ 
 
 
 ## Feedback
